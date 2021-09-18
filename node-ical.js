@@ -1,4 +1,3 @@
-const fs = require('fs');
 const axios = require('axios');
 const ical = require('./ical.js');
 
@@ -134,6 +133,7 @@ async.fromURL = function (url, options, cb) {
  * @returns {optionalPromise} Promise is returned if no callback is passed.
  */
 async.parseFile = function (filename, cb) {
+  const fs = require('fs');
   return promiseCallback((resolve, reject) => {
     fs.readFile(filename, 'utf8', (error, data) => {
       if (error) {
@@ -183,6 +183,7 @@ async.parseICS = function (data, cb) {
  * @returns {iCalData} Parsed iCal data.
  */
 sync.parseFile = function (filename) {
+  const fs = require('fs');
   const data = fs.readFileSync(filename, 'utf8');
   return ical.parseICS(data);
 };
